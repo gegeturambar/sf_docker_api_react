@@ -33,7 +33,7 @@ RUN yarn global add react-i18next i18next
 RUN yarn global add react-router-dom
 RUN yarn global add react-transition-group
 
-CMD ["yarn", "dev"]
+CMD ["yarn", "start"]
 
 
 # "build" stage
