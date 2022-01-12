@@ -31,6 +31,7 @@ ENV API_PLATFORM_CLIENT_GENERATOR_OUTPUT .
 RUN yarn global add --dev @testing-library/react
 RUN yarn global add react-i18next i18next
 RUN yarn global add react-router-dom
+RUN yarn global add react-transition-group
 
 CMD ["yarn", "dev"]
 
