@@ -12,26 +12,27 @@ EXPOSE 3000
 
 WORKDIR /usr/src/pwa
 
-ENV NEXT_TELEMETRY_DISABLED 1
-
 # prevent the reinstallation of node modules at every changes in the source code
 COPY package.json ./
-RUN yarn
+COPY yarn.lock ./
+
 
 COPY . ./
 
-VOLUME /usr/src/pwa/node_modules
+RUN yarn
+
+#VOLUME /usr/src/pwa/node_modules
+# ENV PATH /usr/src/pwa/node_modules/.bin:$PATH
 
 
 # "development" stage
 # depends on the "common" stage above
 FROM api_platform_pwa_common AS api_platform_pwa_dev
 
-ENV API_PLATFORM_CLIENT_GENERATOR_OUTPUT .
 RUN yarn global add --dev @testing-library/react
-RUN yarn global add react-i18next i18next
-RUN yarn global add react-router-dom
-RUN yarn global add react-transition-group
+# RUN yarn global add react-i18next i18next
+# RUN yarn global add react-router-dom
+# RUN yarn global add react-transition-group
 
 CMD ["yarn", "start"]
 
